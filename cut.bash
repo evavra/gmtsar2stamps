@@ -1,6 +1,6 @@
 #!/bin/bash
 
-region="0/2000/0/10000"
+region="0/20000/0/6000"
 
 rm re_*.grd im_*.grd
 cat list | while read a b c
