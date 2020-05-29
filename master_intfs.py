@@ -7,7 +7,7 @@ def main():
     """
     Make all possible interferograms with master scene.
     Run in slc directory and specify master.PRM at command line.
-    Example: master_intfs.py S1_20170905_ALL_F2.SLC
+    Example: master_intfs.py S1_20170905_ALL_F2.PRM
     """
 
     # First, check for topo_ra.grd
@@ -28,13 +28,15 @@ def main():
     # Loop through all
     for i, PRM in enumerate(prms):
         if i < m:
-            print('intf.csh {} {} -topo topo_ra.grd'.format(PRM, supermaster))
-            # subprocess.call('intf.csh {} {} -topo topo_ra.grd'.format(PRM, supermaster), shell=True)
+            # print('intf.csh {} {} -topo topo_ra.grd'.format(PRM, supermaster))
+            print('Working on {} of {}'.format(i+1, len(prms)-1))
+            subprocess.call('intf.csh {} {} -topo topo_ra.grd'.format(PRM, supermaster), shell=True)
         elif i == m:
             continue
         elif i > m:
-            print('intf.csh {} {} -topo_ra.grd'.format(supermaster, PRM))
-            # subprocess.call('intf.csh {} {} -topo_ra.grd'.format(supermaster, PRM), shell=True)
+            # print('intf.csh {} {} -topo topo_ra.grd'.format(supermaster, PRM))
+            print('Working on {} of {}'.format(i, len(prms)-1))
+            subprocess.call('intf.csh {} {} -topo topo_ra.grd'.format(supermaster, PRM), shell=True)
 
 
 if __name__ == '__main__':
